@@ -13,13 +13,15 @@
         <v-text-field
           v-model="search"
           prepend-inner-icon="mdi-magnify"
-          label="Search"
+          label="Search Employee"
           clearable
+          max-width="200"
           color="primary"
           variant="underlined"
           hide-details
         ></v-text-field>
         <v-spacer></v-spacer>
+
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props"> New Employee </v-btn>
@@ -234,6 +236,7 @@ export default {
 
     deleteEmployeeConfirm() {
       this.employees.splice(this.editedIndex, 1)
+      this.saveEmployees(this.employees)
       this.closeDelete()
     },
 
