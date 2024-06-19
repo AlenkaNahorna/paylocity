@@ -3,11 +3,22 @@
     :headers="headers"
     :items="employees"
     item-key="id"
+    :search="search"
     :sort-by="[{ key: 'name', order: 'asc' }]"
   >
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>Calculate Benefits</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          prepend-inner-icon="mdi-magnify"
+          label="Search"
+          clearable
+          color="primary"
+          variant="underlined"
+          hide-details
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ props }">
@@ -131,6 +142,7 @@ import { generateRandomId } from '../utils/generateRandomId.js'
 export default {
   data: () => ({
     employees: [],
+    search: '',
     dialog: false,
     dialogDelete: false,
     headers: [
