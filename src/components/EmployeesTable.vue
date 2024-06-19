@@ -8,7 +8,7 @@
   >
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>Calculate Benefits</v-toolbar-title>
+        <span class="ml-4 text-h6">Calculate Benefits</span>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -151,8 +151,8 @@ export default {
       { title: 'Employees', align: 'start', key: 'name' },
       { title: 'Dependents', key: 'dependents', sortable: false },
       { title: 'Discount (%)', key: 'discount' },
-      { title: 'Benefits/year ($)', key: 'benefitsForYear' },
-      { title: 'Benefits/paycheck ($)', key: 'benefitsForPaycheck' },
+      { title: 'Benefits/year ($)', key: 'benefitsForYear', sortable: false },
+      { title: 'Benefits/paycheck ($)', key: 'benefitsForPaycheck', sortable: false },
       { title: 'Actions', key: 'actions', sortable: false }
     ],
     editedIndex: -1,
