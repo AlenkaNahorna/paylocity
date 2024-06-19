@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://AlenkaNahorna.github.io/paylocity",
+  "homepage": "https://AlenkaNahorna.github.io/paylocity/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
