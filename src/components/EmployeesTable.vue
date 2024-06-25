@@ -118,7 +118,11 @@
     </template>
 
     <template #[`item.benefitsForPaycheck`]="{ item }">
-      {{ (calculateBenefitsForYear(item) / item.paychecksPerYear).toFixed(2) }}
+      {{ calculateBenefitsForPaycheck(item) }}
+    </template>
+
+    <template #[`item.paycheck`]="{ item }">
+      {{ calculatePaycheck(item) }}
     </template>
 
     <template #[`item.actions`]="{ item }">
@@ -151,6 +155,7 @@ export default {
       { title: 'Discount (%)', key: 'discount' },
       { title: 'Benefits/year ($)', key: 'benefitsForYear', sortable: false },
       { title: 'Benefits/paycheck ($)', key: 'benefitsForPaycheck', sortable: false },
+      { title: 'Paycheck ($)', key: 'paycheck', sortable: false },
       { title: 'Actions', key: 'actions', sortable: false }
     ],
     editedIndex: -1,
@@ -218,6 +223,18 @@ export default {
 
       totalBenefits += totalBenefits * (discount / 100)
       return totalBenefits
+    },
+
+    calculateBenefitsForPaycheck(employee) {
+      const benefitsForYear = this.calculateBenefitsForYear(employee)
+      const { paychecksPerYear } = employee
+      return parseFloat((benefitsForYear / paychecksPerYear).toFixed(2))
+    },
+
+    calculatePaycheck(employee) {
+      const benefitsForPaycheck = this.calculateBenefitsForPaycheck(employee)
+      const { paycheck } = employee
+      return paycheck + benefitsForPaycheck
     },
 
     handleEditEmployee(item) {
