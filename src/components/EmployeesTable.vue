@@ -74,11 +74,9 @@
                     </v-col>
                   </v-row>
                   <v-row>
-                    <v-col cols="12" md="4" sm="6">
-                      <v-btn color="blue-darken-1" variant="text" @click="addDependentPerson()"
-                        >Add Dependent Person</v-btn
-                      >
-                    </v-col>
+                    <v-btn color="blue-darken-1" variant="text" @click="addDependentPerson()"
+                      >Add Dependent Person</v-btn
+                    >
                   </v-row>
                 </v-container>
               </v-form>
@@ -242,20 +240,17 @@ export default {
 
     close() {
       this.dialog = false
-      this.$nextTick(() => {
-        this.editedEmployee = Object.assign({}, this.defaultEmployee)
-        this.editedIndex = -1
-      })
+      this.editedEmployee = Object.assign({}, this.defaultEmployee)
+      this.editedIndex = -1
+      this.loadEmployees()
 
       this.$refs?.form?.resetValidation()
     },
 
     closeDelete() {
       this.dialogDelete = false
-      this.$nextTick(() => {
-        this.editedEmployee = Object.assign({}, this.defaultEmployee)
-        this.editedIndex = -1
-      })
+      this.editedEmployee = Object.assign({}, this.defaultEmployee)
+      this.editedIndex = -1
     },
 
     save() {
