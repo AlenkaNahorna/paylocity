@@ -107,6 +107,29 @@
       </v-toolbar>
     </template>
 
+    <template #[`item.name`]="{ item }">
+      <span v-if="item.id === editedEmployee.id" class="d-flex align-center">
+        <v-text-field
+          width="150"
+          v-model="editedEmployee.name"
+          variant="underlined"
+          color="primary"
+          @keydown.enter.stop="save"
+          @keydown.esc="close"
+          @input.stop
+          @click.stop
+          @focus.stop
+        ></v-text-field>
+        <v-btn icon size="x-small" variant="plain">
+          <v-icon @click="save" size="x-large"> mdi-check </v-icon>
+        </v-btn>
+        <v-btn icon size="x-small" variant="plain">
+          <v-icon @click="close" size="x-large"> mdi-close </v-icon>
+        </v-btn>
+      </span>
+      <span v-else @click="handleEditEmployeeName(item)">{{ item.name }} </span>
+    </template>
+
     <template #[`item.dependents`]="{ item }">
       <v-chip v-for="dependent in item.dependents" :key="dependent.id" class="me-2" label>
         {{ dependent.name }}
@@ -160,11 +183,13 @@ export default {
     ],
     editedIndex: -1,
     editedEmployee: {
+      id: '',
       name: '',
       dependents: []
     },
 
     defaultEmployee: {
+      id: '',
       name: '',
       dependents: []
     },
@@ -241,6 +266,11 @@ export default {
       this.editedIndex = this.employees.indexOf(item)
       this.editedEmployee = Object.assign({}, item)
       this.dialog = true
+    },
+
+    handleEditEmployeeName(item) {
+      this.editedIndex = this.employees.indexOf(item)
+      this.editedEmployee = Object.assign({}, item)
     },
 
     handleDeleteEmployee(item) {
